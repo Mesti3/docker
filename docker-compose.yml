@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  react:
+    container_name: react
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+    - '80:80'
+  backend:
+    restart: always
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+    - "8089:8089"
+    environment:
+    - PORT=8089
+    - NODE_ENV=production
+    - MONGO_SERVER_IP=85.237.229.27
